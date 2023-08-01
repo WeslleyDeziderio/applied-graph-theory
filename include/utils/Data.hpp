@@ -4,19 +4,24 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <list>
+#include <vector>
+
+#define MAX (0x7FFFFFFF)
 
 class Data {
 private:
     std::string instanceName;
     int paramsNumber;
-    int *i;
-    int *j;
+    std::vector<std::vector<int>> adjacencyMatrix;
+    std::list<std::list<int>> adjacencyList;
 public:
-    Data(int, char*);
+    Data(int params, char* instance);
     ~Data();
 
     void readData();
-	void printMatrixDist();
+	void printAdjacencyMatrix();
+    void printAdjacencyList();
 };
 
 #endif // DATA_HPP
