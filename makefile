@@ -1,7 +1,7 @@
 PROJ_NAME=concepts
 
 #.hpp files
-HPP_SOURCE=$(wildcard ./include/utils/*.hpp)
+HPP_SOURCE=$(wildcard ./include/*.hpp ./include/utils/*.hpp)
 
 # .cpp files
 CPP_SOURCE=$(wildcard ./src/*.cpp ./src/utils/*.cpp)
