@@ -10,7 +10,7 @@
 #define MAX (0x7FFFFFFF)
 
 class Data {
-private:
+protected:
     int paramsNumber;
     int numVertices;
     std::string instanceName;
@@ -24,6 +24,9 @@ public:
     void removeEdge(int, int);
 	void printAdjacencyMatrix();
     void printAdjacencyList();
+
+    int getNumVertices();
+    void setNumVertices(int);
 };
 
 #endif // DATA_HPP

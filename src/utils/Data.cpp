@@ -11,6 +11,14 @@ Data::Data(int params, char* instance) {
     numVertices = 0;
 }
 
+int Data::getNumVertices() {
+    return numVertices;
+}
+
+void Data::setNumVertices(int numVertices) {
+    this->numVertices = numVertices;
+}
+
 void Data::readData() {
 	std::ifstream inputData(instanceName, std::ios::in);
 
