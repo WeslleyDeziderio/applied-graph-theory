@@ -20,6 +20,7 @@ void Data::readData() {
 	}
 
     inputData >> numVertices;
+    std::cout << "Number of vertices: " << numVertices << std::endl;
     adjacencyMatrix.assign(numVertices, std::vector<int>(numVertices, 0));
 
     for (int i = 0; i < numVertices; ++i) {
@@ -42,7 +43,8 @@ void Data::removeEdge(int i, int j) {
     adjacencyMatrix[j][i] = 0;
 }
 
-void Data::printAdjacencyMatrix() {    
+void Data::printAdjacencyMatrix() {  
+    std::cout << "Adjacency Matrix: \n" << std::endl;  
     for (int i = 0; i < numVertices; ++i) {
         for (int j = 0; j < numVertices; ++j) {
             std::cout << adjacencyMatrix[i][j] << " ";
@@ -54,6 +56,7 @@ void Data::printAdjacencyMatrix() {
 }
 
 void Data::printAdjacencyList() {
+    std::cout << "Adjacency List: \n" << std::endl;
     for (int i = 0; i < numVertices; ++i) {
         std::cout << i << " --> ";
         for (int j = 0; j < numVertices; ++j) {
