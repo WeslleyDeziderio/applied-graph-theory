@@ -31,14 +31,14 @@ void Data::readData() {
     std::cout << "Number of vertices: " << numVertices << std::endl;
     adjacencyMatrix.assign(numVertices, std::vector<int>(numVertices, 0));
 
-    for (int i = 0; i < numVertices; ++i) {
-        for (int j = 0; j < numVertices; ++j) {
-            inputData >> adjacencyMatrix[i][j];
+    for (int i = 0; i < this->numVertices; ++i) {
+        for (int j = 0; j < this->numVertices; ++j) {
+            inputData >> this->adjacencyMatrix[i][j];
         }
     }
 
     inputData.close();
-    std::cout << "Data read successfully!" << std::endl;
+    std::cout << "Data read successfully! \n" << std::endl;
 }
 
 void Data::addEdge(int i, int j) {
@@ -52,10 +52,10 @@ void Data::removeEdge(int i, int j) {
 }
 
 void Data::printAdjacencyMatrix() {  
-    std::cout << "Adjacency Matrix: \n" << std::endl;  
-    for (int i = 0; i < numVertices; ++i) {
-        for (int j = 0; j < numVertices; ++j) {
-            std::cout << adjacencyMatrix[i][j] << " ";
+    std::cout << "Adjacency Matrix: \n";
+    for (int i = 0; i < this->numVertices; ++i) {
+        for (int j = 0; j < this->numVertices; ++j) {
+            std::cout << this->adjacencyMatrix[i][j] << " ";
         }
         std::cout << "\n";
     }
@@ -64,15 +64,55 @@ void Data::printAdjacencyMatrix() {
 }
 
 void Data::printAdjacencyList() {
-    std::cout << "Adjacency List: \n" << std::endl;
-    for (int i = 0; i < numVertices; ++i) {
-        std::cout << i << " --> ";
-        for (int j = 0; j < numVertices; ++j) {
-            if (adjacencyMatrix[i][j] == 1) {
+    std::cout << "Adjacency List: \n";
+    for (int i = 0; i < this->numVertices; ++i) {
+        std::cout << i << " -->";
+        for (int j = 0; j < this->numVertices; ++j) {
+            if (this->adjacencyMatrix[i][j] == 1) {
                 std::cout << j << " ";
             }
         }
         std::cout << "\n";
     }
 
+}
+
+void Data::computeMaxDegree() {
+    int maxDegree = MIN;
+
+    for (int i = 0; i < this->numVertices; ++i) {
+        int degree = 0;
+
+        for (int j = 0; j < this->numVertices; ++j) {
+            if (this->adjacencyMatrix[i][j] == 1) {
+                ++degree;
+            }
+        }
+
+        if (degree > maxDegree) {
+            maxDegree = degree;
+        }
+    }
+
+    std::cout << "\n Graph's maximum degree: " << maxDegree << std::endl;
+}
+
+void Data::computeMinDegree() {
+    int minDegree = MAX;
+
+    for (int i = 0; i < this->numVertices; ++i) {
+        int degree = 0;
+
+        for (int j = 0; j < this->numVertices; ++j) {
+            if (this->adjacencyMatrix[i][j] == 1) {
+                ++degree;
+            }
+        }
+
+        if (degree < minDegree) {
+            minDegree = degree;
+        }
+    }
+
+    std::cout << "\n Graph's minimum degree: " << minDegree << std::endl;
 }

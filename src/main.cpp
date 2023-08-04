@@ -7,6 +7,8 @@ int main(int argc, char** argv) {
     data.readData();
     data.printAdjacencyMatrix();
     data.printAdjacencyList();
+    data.computeMaxDegree();
+    data.computeMinDegree();
 
     return 0;
 }

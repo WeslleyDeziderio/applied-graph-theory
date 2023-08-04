@@ -6,9 +6,10 @@
 #include <fstream>
 #include <vector>
 #include <list>
+#include <algorithm>
 
 #define MAX (0x7FFFFFFF)
-
+#define MIN -1
 class Data {
 protected:
     int paramsNumber;
@@ -16,6 +17,8 @@ protected:
     std::string instanceName;
     std::vector<std::vector<int>> adjacencyMatrix;
     std::list<std::list<int>> adjacencyList;
+    std::vector<int> degreeSequence;
+    
 public:
     Data(int params, char* instance);
 
@@ -24,7 +27,9 @@ public:
     void removeEdge(int, int);
 	void printAdjacencyMatrix();
     void printAdjacencyList();
-
+    void computeMaxDegree();
+    void computeMinDegree();
+    void printDegreeSequence();
     int getNumVertices();
     void setNumVertices(int);
 };
