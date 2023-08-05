@@ -17,21 +17,25 @@ protected:
     std::string instanceName;
     std::vector<std::vector<int>> adjacencyMatrix;
     std::list<std::list<int>> adjacencyList;
-    std::vector<int> degreeSequence;
-    
+    std::vector<int> degreesSequence;
+
 public:
     Data(int params, char* instance);
 
     void readData();
     void addEdge(int, int);
     void removeEdge(int, int);
+    std::list<std::list<int>> getAdjacencyList();
 	void printAdjacencyMatrix();
     void printAdjacencyList();
     void computeMaxDegree();
     void computeMinDegree();
-    void printDegreeSequence();
-    int getNumVertices();
-    void setNumVertices(int);
+    std::vector<int> printDegrees();
+    bool isNeighbors();
+    void determineDegreeOpenClosedNeighbor(); // TODO
+    void isRegular();
+    void isComplete();
+    void isUniversalVertex();
 };
 
 #endif // DATA_HPP

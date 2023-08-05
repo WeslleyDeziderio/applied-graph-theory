@@ -10,5 +10,18 @@ int main(int argc, char** argv) {
     data.computeMaxDegree();
     data.computeMinDegree();
 
+    std::vector<int> degreeSequence = data.printDegrees();
+
+    std::cout << "Degree sequence: ";
+    for (int degree : degreeSequence) {
+        std::cout << degree << " ";
+    }
+    std::cout << std::endl;
+
+    data.isNeighbors();
+    data.determineDegreeOpenClosedNeighbor();
+    data.isRegular();
+    data.isComplete();
+
     return 0;
 }
