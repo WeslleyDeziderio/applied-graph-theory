@@ -23,6 +23,7 @@ public:
     Data(int params, char* instance);
 
     void readData();
+    std::string getInstanceName();
     void addEdge(int, int);
     void removeEdge(int, int);
     std::list<std::list<int>> getAdjacencyList();
@@ -36,6 +37,10 @@ public:
     void isRegular();
     void isComplete();
     void isUniversalVertex();
+    void isIsolatedVertex();
+    void isSubgraph();
+    void isWalk();
+    void isTrail();
 };
 
 #endif // DATA_HPP

@@ -33,6 +33,10 @@ void Data::readData() {
     std::cout << "Data read successfully! \n" << std::endl;
 }
 
+std::string Data::getInstanceName() {
+    return instanceName;
+}
+
 void Data::addEdge(int i, int j) {
     adjacencyMatrix[i][j] = 1;
     adjacencyMatrix[j][i] = 1;
@@ -164,7 +168,7 @@ void Data::determineDegreeOpenClosedNeighbor() {
     int v;
     int degree = 0;
 
-    std::cout << "Insert the vertex: " << std::endl;
+    std::cout << "\nInsert the vertex: " << std::endl;
     std::cin >> v;
 
     for (int i = 0; i < this->numVertices; ++i) {
@@ -197,14 +201,14 @@ void Data::isRegular() {
         }
 
         if (degree != degreeAux) {
-            std::cout << "Graph is not regular." << std::endl;
+            std::cout << "\nGraph is not regular." << std::endl;
             return;
         }
 
         degree = 0;
     }
 
-    std::cout << "Graph is regular." << std::endl;
+    std::cout << "\nGraph is regular." << std::endl;
     std::cout << "And his degree is: " << degreeAux << std::endl;
 }
 
@@ -221,12 +225,42 @@ void Data::isComplete() {
     }
 
     if (numEdges == maxEdges) {
-        std::cout << "Graph is complete." << std::endl;
+        std::cout << "\nThe given graph is complete." << std::endl;
     } else {
-        std::cout << "Graph is not complete." << std::endl;
+        std::cout << "\nThe given graph is not complete." << std::endl;
     }
 }
 
 void Data::isUniversalVertex() {
-    
+    for (int i = 0; i < this->adjacencyList.size(); ++i) {
+        if (this->adjacencyList.size() == this->numVertices -1) {
+            std::cout << "\nVertex " << i << " is universal." << std::endl;
+        } else {
+            std::cout << "Vertex " << i << " is not universal." << std::endl;
+        }
+    }
 }
+
+void Data::isIsolatedVertex() {
+    for (int i = 0; i < this->adjacencyList.size(); ++i) {
+        if (this->adjacencyList.size() == 0) {
+            std::cout << "\nVertex " << i << " is isolated." << std::endl;
+        } else {
+            std::cout << "Vertex " << i << " is not isolated." << std::endl;
+        }
+    }
+}
+
+void Data::isWalk() {
+    for (int i = 0; i < this->numVertices; ++i) {
+        for (int j = 0; j < this->numVertices; ++j) {
+            if (this->adjacencyMatrix[i][j] == 1) {
+            }
+
+        }
+
+    }
+
+}
+
+void Data::isTrail() {}
