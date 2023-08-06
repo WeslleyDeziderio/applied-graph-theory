@@ -39,8 +39,8 @@ public:
     void isComplete();
     void isUniversalVertex();
     void isIsolatedVertex();
-    void isSubgraph();
-    void isWalk();
+    void isSubgraph(); // TODO
+    void isWalk(); // TO FIX
     void isTrail();
 };
 

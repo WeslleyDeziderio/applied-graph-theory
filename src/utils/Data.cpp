@@ -172,10 +172,10 @@ void Data::determineDegreeOpenClosedNeighbor() {
     std::cout << "\nInsert the vertex: " << std::endl;
     std::cin >> vertex;
 
-    for(auto it = this->adjacencyList.begin() ; it != this->adjacencyList.end() ; ++it){
+    for (auto it = this->adjacencyList.begin(); it != this->adjacencyList.end(); ++it) {
         if (i == vertex) {
             std::cout << "Degree: " << it->size() << std::endl;
-            std::cout << "Neighborhood: (";
+            std::cout << "Open neighborhood: (";
 
             std::list<int>::iterator ptr = it->begin();
 
@@ -183,7 +183,7 @@ void Data::determineDegreeOpenClosedNeighbor() {
                 std::cout << *ptr << ", ";
                 advance(ptr, 1);
             }
-            std::cout << *ptr << ")\t [";
+            std::cout << *ptr << ")\t Closed neighborhood: [";
 
             ptr = it->begin();
 
@@ -232,51 +232,78 @@ void Data::isComplete() {
     int maxEdges = (this->numVertices * (this->numVertices - 1)) / 2;
     int numEdges = 0;
 
-    for (int i = 0; i < this->numVertices; ++i) {
-        for (int j = 0; j < this->numVertices; ++j) {
+    for (int i = 0; i < this->numVertices; i++) {
+        for (int j = 0; j < this->numVertices; j++) {
             if (this->adjacencyMatrix[i][j] == 1) {
                 ++numEdges;
             }
         }
     }
 
-    if (numEdges == maxEdges) {
-        std::cout << "\nThe given graph is complete." << std::endl;
-    } else {
-        std::cout << "\nThe given graph is not complete." << std::endl;
-    }
+    std::string ans = numEdges/2 == maxEdges ? "\nThe given graph is complete.\n" : "\nThe given graph is not complete.\n";
+    std::cout << ans;
 }
 
 void Data::isUniversalVertex() {
-    for (int i = 0; i < this->adjacencyList.size(); ++i) {
-        if (this->adjacencyList.size() == this->numVertices -1) {
-            std::cout << "\nVertex " << i << " is universal." << std::endl;
+    int i = 1;
+
+    for (auto it = this->adjacencyList.begin(); it != this->adjacencyList.end(); ++it) {
+        if (it->size() == this->numVertices-1) {
+            std::cout << "\nVertex " << i << " is universal.";
         } else {
-            std::cout << "Vertex " << i << " is not universal." << std::endl;
+            std::cout << "Vertex " << i << " is not universal.";
         }
+        i++;
     }
 }
 
 void Data::isIsolatedVertex() {
-    for (int i = 0; i < this->adjacencyList.size(); ++i) {
-        if (this->adjacencyList.size() == 0) {
-            std::cout << "\nVertex " << i << " is isolated." << std::endl;
+    int i = 1;
+    for (auto it = this->adjacencyList.begin(); it != this->adjacencyList.end(); ++it) {
+        if (it->size() == 0) {
+            std::cout << "\nVertex " << i << " is isolated.";
         } else {
-            std::cout << "Vertex " << i << " is not isolated." << std::endl;
+            std::cout << "\nVertex " << i << " is not isolated.";
         }
+        i++;
     }
 }
 
-void Data::isWalk() {
-    for (int i = 0; i < this->numVertices; ++i) {
-        for (int j = 0; j < this->numVertices; ++j) {
-            if (this->adjacencyMatrix[i][j] == 1) {
-            }
+void Data::isSubgraph() {} // TO DO
 
-        }
+void Data::isWalk() { // TO FIX
+    int walkListSize;
+    int vertexToInsert;
+    std::vector<int> walkSequence;
 
+    std::cout << "\nInsert the lenght of the list of vertices: " << std::endl;
+    std::cin >> walkListSize;
+
+    for (int i = 1; i <= walkListSize; ++i) {
+        std::cout << "\nInsert the vertex " << i << ": ";
+        std::cin >> vertexToInsert;
+        walkSequence.push_back(vertexToInsert);
     }
 
+    for (auto ws : walkSequence) {
+        std::cout << ws << std::endl;
+    }
+
+    int j = 1; 
+    for (int i = 0, j; i < walkListSize-1; i++, j++) {
+        std::cout << "caiu aqui?";
+        if (walkSequence[i] == walkSequence[j]) {
+            std::cout << "\nThe given sequence does not form a walk!" << std::endl;
+        }
+
+        if (this->adjacencyMatrix[walkSequence[i]][walkSequence[j]] == 1) {
+            continue;
+        } else {
+            std::cout << "\nThe given sequence does not form a walk!" << std::endl;
+            return;
+        }
+    }
+    std::cout << "\nThe given sequence form a walk!" << std::endl;
 }
 
 void Data::isTrail() {}
