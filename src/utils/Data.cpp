@@ -64,7 +64,7 @@ std::list<std::list<int>> Data::getAdjacencyList() {
         std::list<int> neighbors;
         for (int j = 0; j < numVertices; ++j) {
             if (adjacencyMatrix[i][j] == 1) {
-                neighbors.push_back(j);
+                neighbors.push_back(j+1);
             }
         }
 
@@ -80,7 +80,7 @@ void Data::printAdjacencyList() {
     
     std::cout << "Adjacency List: \n";
     for (const auto& neighbors : adjacencyList) {
-        std::cout << vertex << " --> ";
+        std::cout << vertex+1 << " --> ";
         for (int neighbor : neighbors) {
             std::cout << neighbor << " ";
         }
@@ -165,23 +165,39 @@ bool Data::isNeighbors() {
 } 
 
 void Data::determineDegreeOpenClosedNeighbor() {
-    int v;
+    int vertex;
     int degree = 0;
+    int i = 1;
 
     std::cout << "\nInsert the vertex: " << std::endl;
-    std::cin >> v;
+    std::cin >> vertex;
 
-    for (int i = 0; i < this->numVertices; ++i) {
-        if (this->adjacencyMatrix[v][i] == 1) {
-            ++degree;
+    for(auto it = this->adjacencyList.begin() ; it != this->adjacencyList.end() ; ++it){
+        if (i == vertex) {
+            std::cout << "Degree: " << it->size() << std::endl;
+            std::cout << "Neighborhood: (";
+
+            std::list<int>::iterator ptr = it->begin();
+
+            for (int k = 0; k < (it->size()-1); ++k) {
+                std::cout << *ptr << ", ";
+                advance(ptr, 1);
+            }
+            std::cout << *ptr << ")\t [";
+
+            ptr = it->begin();
+
+            for (int k = 0; k < (it->size()-1); ++k) {
+                if (k == vertex-1) {
+                    std::cout << k+1 << ", ";
+                }
+                std::cout << *ptr << ", ";
+                advance(ptr, 1);
+             }
+             std::cout << *ptr << "]\t" << std::endl;
         }
-    }
-    std::cout << "Degree of " << "vertex " << v << " is: " << degree << std::endl;
-
-    for (int i = 0; i < this->numVertices; ++i) {
-        if (this->adjacencyMatrix[v][i] == 1) {
-
-        }
+        
+        i++;
     }
 }
 

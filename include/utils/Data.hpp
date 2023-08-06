@@ -7,6 +7,7 @@
 #include <vector>
 #include <list>
 #include <algorithm>
+#include <iterator>
 
 #define MAX (0x7FFFFFFF)
 #define MIN -1
@@ -32,8 +33,8 @@ public:
     void computeMaxDegree();
     void computeMinDegree();
     std::vector<int> printDegrees();
+    void determineDegreeOpenClosedNeighbor();
     bool isNeighbors();
-    void determineDegreeOpenClosedNeighbor(); // TODO
     void isRegular();
     void isComplete();
     void isUniversalVertex();
