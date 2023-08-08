@@ -251,7 +251,7 @@ void Data::isUniversalVertex() {
         if (it->size() == this->numVertices-1) {
             std::cout << "\nVertex " << i << " is universal.";
         } else {
-            std::cout << "Vertex " << i << " is not universal.";
+            std::cout << "\nVertex " << i << " is not universal.";
         }
         i++;
     }
@@ -259,6 +259,7 @@ void Data::isUniversalVertex() {
 
 void Data::isIsolatedVertex() {
     int i = 1;
+
     for (auto it = this->adjacencyList.begin(); it != this->adjacencyList.end(); ++it) {
         if (it->size() == 0) {
             std::cout << "\nVertex " << i << " is isolated.";
@@ -289,9 +290,8 @@ void Data::isWalk() { // TO FIX
         std::cout << ws << std::endl;
     }
 
-    int j = 1; 
-    for (int i = 0, j; i < walkListSize-1; i++, j++) {
-        std::cout << "caiu aqui?";
+    int j; 
+    for (int i = 0, j = 1; i < walkListSize-1; i++, j++) {
         if (walkSequence[i] == walkSequence[j]) {
             std::cout << "\nThe given sequence does not form a walk!" << std::endl;
         }
