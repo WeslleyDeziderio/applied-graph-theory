@@ -272,7 +272,7 @@ void Data::isIsolatedVertex() {
 
 void Data::isSubgraph() {} // TO DO
 
-void Data::isWalk() { // TO FIX
+void Data::isWalk() {
     int walkListSize;
     int vertexToInsert;
     std::vector<int> walkSequence;
