@@ -26,6 +26,7 @@ int main(int argc, char** argv) {
     data.isUniversalVertex();
     data.isIsolatedVertex();
     data.isWalk();
+    data.isPath();
 
     return 0;
 }

@@ -277,17 +277,13 @@ void Data::isWalk() { // TO FIX
     int vertexToInsert;
     std::vector<int> walkSequence;
 
-    std::cout << "\nInsert the lenght of the list of vertices: " << std::endl;
+    std::cout << "\n\nInsert the lenght of the list of vertices: " << std::endl;
     std::cin >> walkListSize;
 
     for (int i = 1; i <= walkListSize; ++i) {
         std::cout << "\nInsert the vertex " << i << ": ";
         std::cin >> vertexToInsert;
         walkSequence.push_back(vertexToInsert);
-    }
-
-    for (auto ws : walkSequence) {
-        std::cout << ws << std::endl;
     }
 
     int j; 
@@ -305,5 +301,32 @@ void Data::isWalk() { // TO FIX
     }
     std::cout << "\nThe given sequence form a walk!" << std::endl;
 }
+
+void Data::isPath() {
+    int pathSize;
+    int vertexToInsert;
+    std::vector<int> pathSequence;
+    std::vector<bool> visitedVertex(this->adjacencyList.size(), false);
+
+    std::cout << "\nInsert the sequence of vertices: ";
+    std::cin >> vertexToInsert;
+
+    for (int i = 1; i < pathSize; ++i) {
+        std::cout << "Insert the vertex " << i << ": ";
+        std::cin >> vertexToInsert;
+        pathSequence.push_back(vertexToInsert);
+    }
+
+    for (int i = 0; i < pathSize-1; ++i) {
+        if (this->adjacencyMatrix[pathSequence[i]][pathSequence[i+1]] != 1) {
+            std::cout << "\nThe given sequence does not form a path!" << std::endl;
+            return;
+        }
+    }
+
+    std::cout << "\nThe given sequence form a path!" << std::endl;
+}
+
+void Data::isCycle() {}
 
 void Data::isTrail() {}

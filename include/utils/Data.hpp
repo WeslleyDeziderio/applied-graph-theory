@@ -40,8 +40,10 @@ public:
     void isUniversalVertex();
     void isIsolatedVertex();
     void isSubgraph(); // TODO
-    void isWalk(); // TO FIX
-    void isTrail();
+    void isWalk();
+    void isPath();
+    void isCycle(); // TODO
+    void isTrail(); // TODO
 };
 
 #endif // DATA_HPP
