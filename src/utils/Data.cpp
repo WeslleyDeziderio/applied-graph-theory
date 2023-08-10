@@ -327,6 +327,23 @@ void Data::isPath() {
     std::cout << "\nThe given sequence form a path!" << std::endl;
 }
 
-void Data::isCycle() {}
+void Data::isCycle() {
+    std::vector<int> sequence;
+    std::vector<bool> visitedVertex(this->numVertices, false);
+    std::vector<int> parent(this->numVertices, MIN);
+
+    for (int i = 0; i < sequence.size()-1; ++i) {
+        if (!visitedVertex[sequence[i]]) {
+            visitedVertex[sequence[i+1]] == true;
+            if (this->adjacencyMatrix[sequence[i]][sequence[i+1]] == 1) {
+                parent[sequence[i+1] == sequence[i]];
+            } else {
+                return;
+            }
+        }
+
+
+    }
+}
 
 void Data::isTrail() {}
