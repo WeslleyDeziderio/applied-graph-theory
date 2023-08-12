@@ -165,6 +165,8 @@ O complemento de G é um grafo G¯=(V,E¯) que possui os mesmos vértices de G, 
 
 ![Complemento](assets/q17.png)
 
+Escreva uma função que receba um grafo como parâmetro e retorne o seu complemento. Observe que o retorno da função consiste em um grafo.
+
 </div>
 
 <div>
