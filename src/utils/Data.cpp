@@ -146,7 +146,7 @@ std::vector<int> Data::printDegrees() {
 }
 
 void Data::isNeighbors() {
-    std::cout << "\nWhat vertices do you want to verify?" << std::endl;
+    std::cout << "\nWhat vertices do you want to verify adjacency?" << std::endl;
 
     int i;
     int j;
@@ -169,7 +169,7 @@ void Data::determineDegreeOpenClosedNeighbor() {
     int degree = 0;
     int i = 1;
 
-    std::cout << "\nInsert the vertex: " << std::endl;
+    std::cout << "\nInsert the vertex to verify open closed adjacency: " << std::endl;
     std::cin >> vertex;
 
     for (auto it = this->adjacencyList.begin(); it != this->adjacencyList.end(); ++it) {
@@ -272,18 +272,18 @@ void Data::isIsolatedVertex() {
 
 void Data::isSubgraph() { //TODO
     int verticesSequenceSize;
-    int edgesSequenceSize;
     int vertexToInsert;
-    int edgeToInsert;
     std::list<int> verticesList;
-    std::list<int> edgesList;
+    int numSublists;
+    int edgesSequenceSize;
+    std::list<std::list<int>> edgesList;
 
     std::cout << "\nSubgraph" << std::endl;
     std::cout << "Insert the length of the sequence of vertices: ";
     std::cin >> verticesSequenceSize;
 
     std::cout << "\nInsert the length of the sequence of edges: ";
-    std::cin >> edgesSequenceSize;
+    std::cin >> numSublists;
 
     for (int i = 1; i <= verticesSequenceSize; ++i) {
         std::cout << "Insert the vertex " << i << ": ";
@@ -291,13 +291,31 @@ void Data::isSubgraph() { //TODO
         verticesList.push_back(vertexToInsert);
     }
 
-    for (int j = 1; j <= edgesSequenceSize; ++j) {
-        std::cout << "Insert the edge " << j << ": ";
-        std::cin >> edgeToInsert;
-        edgesList.push_back(edgeToInsert);
+    for (int j = 0; j < numSublists; ++j) {
+        int sublistSize;
+        std::cout << "Insert the size of sublist " << j+1 << ": ";
+        std::cin >> sublistSize;
+       
+        std::list<int> sublist;
+
+        std::cout << "Enter " << sublistSize << " values for sublist " << j+1 << ", ";
+        for (int k = 0; k < sublistSize; ++k) {
+            std::cout << "insert the value " << k+1 << ": ";
+            int value;
+            std::cin >> value;
+            sublist.push_back(value);
+        }
+
+        edgesList.push_back(sublist);
+
     }
 
-    std::cout << "\nThe given sequence form a subgraph!" << std::endl;
+     for (const std::list<int>& innerList : edgesList) {
+        for (int value : innerList) {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl;
+     }
 
 }
 
@@ -442,9 +460,7 @@ void Data::isClique() {
     std::cout << "\nThe given sequence form a clique!" << std::endl;
 }
 
-void Data::isCliqueMaximal() { //  TODO
-    
-}
+void Data::isCliqueMaximal() {} //  TODO
 
 void Data::generateComplement() {
     std::cout << "\nOriginal graph" << std::endl;
