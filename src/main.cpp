@@ -5,6 +5,7 @@ int main(int argc, char** argv) {
     Data data(argc, argv[1]);
     std::string instanceName = data.getInstanceName();
     std::cout << "Reading: " << instanceName << std::endl;
+    
     data.readData();
     data.printAdjacencyMatrix();
     data.printAdjacencyList();
@@ -25,8 +26,13 @@ int main(int argc, char** argv) {
     data.isComplete();
     data.isUniversalVertex();
     data.isIsolatedVertex();
+    data.isSubgraph();
     data.isWalk();
     data.isPath();
+    data.isCycle();
+    data.isTrail();
+    data.isClique();
+    data.generateComplement();
 
     return 0;
 }
