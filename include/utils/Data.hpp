@@ -34,7 +34,7 @@ public:
     void computeMinDegree();
     std::vector<int> printDegrees();
     void determineDegreeOpenClosedNeighbor();
-    bool isNeighbors();
+    void isNeighbors();
     void isRegular();
     void isComplete();
     void isUniversalVertex();
@@ -42,8 +42,12 @@ public:
     void isSubgraph(); // TODO
     void isWalk();
     void isPath();
-    void isCycle(); // TODO
-    void isTrail(); // TODO
+    void isCycle();
+    void isTrail();
+    void isClique();
+    void isCliqueMaximal();
+    void generateComplement();
+    void isIndependentSet(); // TODO
 };
 
 #endif // DATA_HPP
