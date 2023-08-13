@@ -32,7 +32,9 @@ int main(int argc, char** argv) {
     data.isCycle();
     data.isTrail();
     data.isClique();
+    data.isCliqueMaximal();
     data.generateComplement();
+    data.isIndependentSet();
 
     return 0;
 }

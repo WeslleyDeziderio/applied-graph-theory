@@ -38,6 +38,7 @@ public:
     std::vector<int> printDegrees();
     void determineDegreeOpenClosedNeighbor();
     bool isAdjacency(int, int);
+    bool isAdjacencyComplement(int, int);
     void isNeighbors();
     void isRegular();
     void isComplete();
@@ -49,9 +50,10 @@ public:
     void isCycle();
     void isTrail();
     bool isClique();
-    void isCliqueMaximal(); // TODO
+    bool isCliqueComplement();
+    void isCliqueMaximal();
     void generateComplement();
-    void isIndependentSet(); // TODO
+    void isIndependentSet();
 };
 
 #endif // DATA_HPP

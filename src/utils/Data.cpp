@@ -172,6 +172,14 @@ bool Data::isAdjacency(int i, int j) {
     return false;
 } 
 
+bool Data::isAdjacencyComplement(int i, int j) {
+    if (this->adjacencyComplementMatrix[i][j] == 1) {
+        return true;
+    }
+    
+    return false;
+} 
+
 void Data::determineDegreeOpenClosedNeighbor() {
     int vertex;
     int degree = 0;
@@ -394,6 +402,7 @@ void Data::isPath() {
 
     std::cout << "\nThe given sequence form a path!" << std::endl;
 }
+
 void Data::isCycle() {
     int cycleSize;
     int vertexToInsert;
@@ -442,15 +451,13 @@ void Data::isTrail() {
 
     std::vector<bool> visited(numVertices, false);
 
-    for (int i = 0; i < trailSequence.size(); ++i) {
-        int vertex = trailSequence[i];
-        
-        if (visited[vertex]) {
+    for (int i = 0; i < trailSequence.size(); ++i) {        
+        if (visited[trailSequence[i]]) {
             std::cout << "\nThe given sequence does not form a trail!" << std::endl;
             return;
         }
 
-        visited[vertex] = true;
+        visited[trailSequence[i]] = true;
     }
     
     std::cout << "\nThe given sequence form a trail!" << std::endl;
@@ -483,6 +490,34 @@ bool Data::isClique() {
     return true;
 }
 
+
+bool Data::isCliqueComplement() {
+    int cliqueSize;
+    int vertexToInsert;
+    std::vector<int> cliqueSequence;
+
+    std::cout << "\nInsert the length of the sequence of edges to verify if is clique: ";
+    std::cin >> cliqueSize;
+
+    for (int i = 1; i <= cliqueSize; ++i) {
+        std::cout << "Insert the vertex " << i << ": ";
+        std::cin >> vertexToInsert;
+        cliqueSequence.push_back(vertexToInsert-1);
+    }
+
+    for (int i = 0; i < cliqueSequence.size(); i++) {
+        for (int j = i+1; j < cliqueSequence.size(); j++) {
+            if (!isAdjacencyComplement(cliqueSequence[i], cliqueSequence[j])) {
+                std::cout << "\nThe given sequence does not form a clique!" << std::endl;
+                return false;
+            }
+        }
+    }
+
+    std::cout << "\nThe given sequence form a clique!" << std::endl;
+    return true;
+}
+
 void Data::isCliqueMaximal() {
     int cliqueSize;
     int vertexToInsert;
@@ -497,15 +532,33 @@ void Data::isCliqueMaximal() {
         cliqueSequence.push_back(vertexToInsert-1);
     }
 
-    for (int i = 0; i < cliqueSequence.size(); i++) {
-        for (int j = i+1; j < cliqueSequence.size(); j++) {
-            if (!isAdjacency(cliqueSequence[i], cliqueSequence[j])) {
-                std::cout << "\nThe given sequence does not form a maximum clique!" << std::endl;
-                return;
-            }
+    bool flag;
+
+    for (int count = 0; count <= this->numVertices; ++count) {
+        if (!(std::find(cliqueSequence.begin(), cliqueSequence.end(), count) != cliqueSequence.end())) {
+            cliqueSequence.push_back(count);
+            for (int i = 0; i < cliqueSequence.size(); i++) {
+                flag = false;
+                for (int j = i+1; j < cliqueSequence.size(); j++) {
+                    if (!isAdjacency(cliqueSequence[i], cliqueSequence[j])) {
+                        flag = true;
+                        break;
+                    }
+                }
+                
+                if (flag) {
+                    break;
+                }
+
+                if (i == cliqueSequence.size()-1) {
+                    std::cout << "\nThe given sequence does not form a maximum clique!" << std::endl;
+                    return;
+                }
+            } 
+            cliqueSequence.pop_back();
         }
-    
     }
+
     std::cout << "\nThe given sequence form a maximum clique!" << std::endl;
 }
 
@@ -538,8 +591,9 @@ void Data::generateComplement() {
 }
 
 void Data::isIndependentSet() {
-    if (isClique()) {
-        std::cout << "\nThe given sequence does form an independent set!" << std::endl;
+    std::cout << "\nIndependent set" << std::endl;
+    if (isCliqueComplement()) {
+        std::cout << "\nThe given sequence form an independent set!" << std::endl;
         return;
     }
 
