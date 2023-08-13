@@ -430,7 +430,7 @@ void Data::isTrail() {
     int vertexToInsert;
     std::vector<int> trailSequence;
     std::cout << "\nInsert the sequence of vertices to determine if forms a trail: ";
-    std::cin >> vertexToInsert;
+    std::cin >> trailSize;
 
     if (vertexToInsert <= 0) {
         return;
