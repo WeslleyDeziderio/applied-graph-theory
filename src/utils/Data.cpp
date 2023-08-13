@@ -37,6 +37,10 @@ std::string Data::getInstanceName() {
     return instanceName;
 }
 
+std::vector<std::vector<int>> Data::getAdjacencyComplementMatrix() {
+    return adjacencyComplementMatrix;
+}
+
 void Data::addEdge(int i, int j) {
     this->adjacencyMatrix[i][j] = 1;
     this->adjacencyMatrix[j][i] = 1;
@@ -146,22 +150,26 @@ std::vector<int> Data::printDegrees() {
 }
 
 void Data::isNeighbors() {
-    std::cout << "\nWhat vertices do you want to verify adjacency?" << std::endl;
-
     int i;
     int j;
+    std::cout << "\nWhat vertices do you want to verify adjacency?" << std::endl;
     std::cin >> i;
     std::cin >> j;
 
-    for (int k = 0; k < this->numVertices; ++k) {
-        if (this->adjacencyMatrix[i][j] == 1) {
-            std::cout << i << " and " << j << " are neighbors." << std::endl;
-            return;
-        }
+    if (this->adjacencyMatrix[i][j] == 1) {
+        std::cout << i << " and " << j << " are neighbors." << std::endl;
+        return;
     }
     
     std::cout << i << " and " << j << " are not neighbors." << std::endl;
-    return;
+} 
+
+bool Data::isAdjacency(int i, int j) {
+    if (this->adjacencyMatrix[i][j] == 1) {
+        return true;
+    }
+    
+    return false;
 } 
 
 void Data::determineDegreeOpenClosedNeighbor() {
@@ -270,7 +278,7 @@ void Data::isIsolatedVertex() {
     }
 }
 
-void Data::isSubgraph() { //TODO
+void Data::isSubgraph() {
     int verticesSequenceSize;
     int vertexToInsert;
     std::list<int> verticesList;
@@ -288,7 +296,7 @@ void Data::isSubgraph() { //TODO
     for (int i = 1; i <= verticesSequenceSize; ++i) {
         std::cout << "Insert the vertex " << i << ": ";
         std::cin >> vertexToInsert;
-        verticesList.push_back(vertexToInsert);
+        verticesList.push_back(vertexToInsert-1);
     }
 
     for (int j = 0; j < numSublists; ++j) {
@@ -299,11 +307,11 @@ void Data::isSubgraph() { //TODO
         std::list<int> sublist;
 
         std::cout << "Enter " << sublistSize << " values for sublist " << j+1 << ", ";
-        for (int k = 0; k < sublistSize; ++k) {
-            std::cout << "insert the value " << k+1 << ": ";
+        for (int k = 1; k <= sublistSize; ++k) {
+            std::cout << "insert the value " << k << ": ";
             int value;
             std::cin >> value;
-            sublist.push_back(value);
+            sublist.push_back(value-1);
         }
 
         edgesList.push_back(sublist);
@@ -312,11 +320,25 @@ void Data::isSubgraph() { //TODO
 
      for (const std::list<int>& innerList : edgesList) {
         for (int value : innerList) {
-            std::cout << value << " ";
+            std::cout << value+1 << " ";
         }
         std::cout << std::endl;
      }
 
+     for (std::list<int> edge : edgesList) {
+        if (edge.size() != 2) {
+            std::cout << "\nThe given sequence does not form a valid edge!" << std::endl;
+            return;
+        }
+
+        if (std::find(verticesList.begin(), verticesList.end(), edge.front()) == verticesList.end() ||
+            std::find(verticesList.begin(), verticesList.end(), edge.back()) == verticesList.end()) {
+            std::cout << "\nThe given sequence contains vertices not present in the vertex list!" << std::endl;
+            return;
+        }
+    }
+
+    std::cout << "\nThe given sequence forms a valid subgraph!" << std::endl;
 }
 
 void Data::isWalk() {
@@ -346,7 +368,7 @@ void Data::isPath() {
     int pathSize;
     int vertexToInsert;
     std::vector<int> pathSequence;
-
+    std::vector<bool> vertexUsed(this->adjacencyMatrix.size(), false);
     std::cout << "\nInsert the sequence of vertices to determine if forms a path: ";
     std::cin >> pathSize;
 
@@ -357,15 +379,21 @@ void Data::isPath() {
     }
 
     for (int i = 0; i < pathSize-1; ++i) {
-        if (this->adjacencyMatrix[pathSequence[i]][pathSequence[i+1]] != 1) {
+        if (i > 0 && !this->adjacencyMatrix[pathSequence[i-1]][pathSequence[i]]) {
             std::cout << "\nThe given sequence does not form a path!" << std::endl;
             return;
         }
+
+        if (vertexUsed[pathSequence[i]]) {
+            std::cout << "\nThe given sequence does not form a path! Repeated vertex!" << std::endl;
+            return;
+        }
+
+        vertexUsed[pathSequence[i]] = true;
     }
 
     std::cout << "\nThe given sequence form a path!" << std::endl;
 }
-
 void Data::isCycle() {
     int cycleSize;
     int vertexToInsert;
@@ -392,7 +420,6 @@ void Data::isTrail() {
     int trailSize;
     int vertexToInsert;
     std::vector<int> trailSequence;
-
     std::cout << "\nInsert the sequence of vertices to determine if forms a trail: ";
     std::cin >> vertexToInsert;
 
@@ -429,12 +456,12 @@ void Data::isTrail() {
     std::cout << "\nThe given sequence form a trail!" << std::endl;
 }
 
-void Data::isClique() {
+bool Data::isClique() {
     int cliqueSize;
     int vertexToInsert;
     std::vector<int> cliqueSequence;
 
-    std::cout << "\nInsert the size of the sequence of vertices to determine if forms a clique: ";
+    std::cout << "\nInsert the length of the sequence of edges to verify if is clique: ";
     std::cin >> cliqueSize;
 
     for (int i = 1; i <= cliqueSize; ++i) {
@@ -443,53 +470,78 @@ void Data::isClique() {
         cliqueSequence.push_back(vertexToInsert-1);
     }
 
-    for (int i = 0; i < cliqueSize-1; ++i) {
-        for (int j = i+1; j < cliqueSize; ++j) {
-            if (cliqueSequence[i] == cliqueSequence[j]) {
+    for (int i = 0; i < cliqueSequence.size(); i++) {
+        for (int j = i+1; j < cliqueSequence.size(); j++) {
+            if (!isAdjacency(cliqueSequence[i], cliqueSequence[j])) {
                 std::cout << "\nThe given sequence does not form a clique!" << std::endl;
-                return;
-            }
-
-            if (this->adjacencyMatrix[cliqueSequence[i]][cliqueSequence[i+1]] != 1) {
-                std::cout << "\nThe given sequence does not form a clique!" << std::endl;
-                return;
+                return false;
             }
         }
     }
 
     std::cout << "\nThe given sequence form a clique!" << std::endl;
+    return true;
 }
 
-void Data::isCliqueMaximal() {} //  TODO
+void Data::isCliqueMaximal() {
+    int cliqueSize;
+    int vertexToInsert;
+    std::vector<int> cliqueSequence;
+
+    std::cout << "\nInsert the length of the sequence of edges to verify if is clique maximal: ";
+    std::cin >> cliqueSize;
+
+    for (int i = 1; i <= cliqueSize; ++i) {
+        std::cout << "Insert the vertex " << i << ": ";
+        std::cin >> vertexToInsert;
+        cliqueSequence.push_back(vertexToInsert-1);
+    }
+
+    for (int i = 0; i < cliqueSequence.size(); i++) {
+        for (int j = i+1; j < cliqueSequence.size(); j++) {
+            if (!isAdjacency(cliqueSequence[i], cliqueSequence[j])) {
+                std::cout << "\nThe given sequence does not form a maximum clique!" << std::endl;
+                return;
+            }
+        }
+    
+    }
+    std::cout << "\nThe given sequence form a maximum clique!" << std::endl;
+}
 
 void Data::generateComplement() {
     std::cout << "\nOriginal graph" << std::endl;
     this->printAdjacencyMatrix();
 
     std::cout << "\nComplement:" << std::endl;
-    std::vector<std::vector<int>> adjacencyComplementMatrix;
-    adjacencyComplementMatrix.assign(numVertices, std::vector<int>(numVertices, 0));
+    this->adjacencyComplementMatrix.assign(numVertices, std::vector<int>(numVertices, 0));
     for (int i = 0; i < this->numVertices; ++i) {
         for (int j = 0; j < this->numVertices; ++j) {
             if (this->adjacencyMatrix[i][j] == 1) {
-                adjacencyComplementMatrix[i][j] = 0;
-                adjacencyComplementMatrix[j][i] = 0;
-            } else {
-                adjacencyComplementMatrix[i][j] = 1;
-                adjacencyComplementMatrix[j][i] = 1;
+                this->adjacencyComplementMatrix[i][j] = 0;
+                this->adjacencyComplementMatrix[j][i] = 0;
+            }
+             else if (i != j) {
+                this->adjacencyComplementMatrix[i][j] = 1;
+                this->adjacencyComplementMatrix[j][i] = 1;
             }
         }
     }
 
     for (int k = 0; k < this->numVertices; ++k) {
         for (int l = 0; l < this->numVertices; ++l) {
-            std::cout << adjacencyComplementMatrix[k][l] << " ";
+            std::cout << this->adjacencyComplementMatrix[k][l] << " ";
         }
         std::cout << "\n";
     }
     std::cout << "\n";
 }
 
-void Data::isIndependentSet() { // TODO
+void Data::isIndependentSet() {
+    if (isClique()) {
+        std::cout << "\nThe given sequence does form an independent set!" << std::endl;
+        return;
+    }
 
+    std::cout << "\nThe given sequence  form an independent set!" << std::endl;
 }

@@ -8,6 +8,7 @@
 #include <list>
 #include <algorithm>
 #include <iterator>
+#include <unordered_set>
 
 #define MAX (0x7FFFFFFF)
 #define MIN -1
@@ -17,6 +18,7 @@ protected:
     int numVertices;
     std::string instanceName;
     std::vector<std::vector<int>> adjacencyMatrix;
+    std::vector<std::vector<int>> adjacencyComplementMatrix;
     std::list<std::list<int>> adjacencyList;
     std::vector<int> degreesSequence;
 
@@ -25,6 +27,7 @@ public:
 
     void readData();
     std::string getInstanceName();
+    std::vector<std::vector<int>> getAdjacencyComplementMatrix();
     void addEdge(int, int);
     void removeEdge(int, int);
     std::list<std::list<int>> getAdjacencyList();
@@ -34,18 +37,19 @@ public:
     void computeMinDegree();
     std::vector<int> printDegrees();
     void determineDegreeOpenClosedNeighbor();
+    bool isAdjacency(int, int);
     void isNeighbors();
     void isRegular();
     void isComplete();
     void isUniversalVertex();
     void isIsolatedVertex();
-    void isSubgraph(); // TODO
+    void isSubgraph();
     void isWalk();
     void isPath();
     void isCycle();
     void isTrail();
-    void isClique();
-    void isCliqueMaximal();
+    bool isClique();
+    void isCliqueMaximal(); // TODO
     void generateComplement();
     void isIndependentSet(); // TODO
 };
