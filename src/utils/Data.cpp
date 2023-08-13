@@ -415,14 +415,18 @@ void Data::isCycle() {
         std::cout << "Insert the vertex " << i << ": ";
         std::cin >> vertexToInsert;
 
-        if (i > 1 && i < cycleSize && std::find(cycleSequence.begin(), cycleSequence.end(), vertexToInsert) != cycleSequence.end()) {
+        if (i > 0 && i < cycleSize && std::find(cycleSequence.begin(), cycleSequence.end(), vertexToInsert) != cycleSequence.end()) {
             std::cout << "\nRepeated vertex found! The sequence does not form a cycle." << std::endl;
             return;
         }
-        cycleSequence.push_back(vertexToInsert-1);
+        cycleSequence.push_back(vertexToInsert);
     }
 
-    std::cout << "\nThe given sequence forms a cycle." << std::endl;
+    if (cycleSequence.front() != cycleSequence.back()) {
+        std::cout << "\nThe given sequence does not form a cycle." << std::endl;
+    } else {
+        std::cout << "\nThe given sequence forms a cycle." << std::endl;
+    }
 }
 
 void Data::isTrail() {
@@ -432,12 +436,12 @@ void Data::isTrail() {
     std::cout << "\nInsert the sequence of vertices to determine if forms a trail: ";
     std::cin >> trailSize;
 
-    if (vertexToInsert <= 0) {
+    if (trailSize <= 0) {
         return;
     }
 
-    for (int i = 1; i <= trailSize; ++i) {
-        std::cout << "Insert the vertex " << i << ": ";
+    for (int i = 0; i < trailSize; ++i) {
+        std::cout << "Insert the vertex " << i+1 << ": ";
         std::cin >> vertexToInsert;
         trailSequence.push_back(vertexToInsert-1);
     }
@@ -489,7 +493,6 @@ bool Data::isClique() {
     std::cout << "\nThe given sequence form a clique!" << std::endl;
     return true;
 }
-
 
 bool Data::isCliqueComplement() {
     int cliqueSize;
