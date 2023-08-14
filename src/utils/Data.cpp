@@ -600,5 +600,5 @@ void Data::isIndependentSet() {
         return;
     }
 
-    std::cout << "\nThe given sequence  form an independent set!" << std::endl;
+    std::cout << "\nThe given sequence does not form an independent set!" << std::endl;
 }
