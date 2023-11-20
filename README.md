@@ -1,11 +1,10 @@
-<h1>Teoria dos Grafos Aplicada - Trabalho 1</h1>
+<h1 align="center"> Project 1| Initial Concepts about Graphs</h1>
 
-[![author](https://img.shields.io/badge/author-WeslleyDeziderio-blue.svg)](https://github.com/WeslleyDeziderio)
-[![](https://img.shields.io/badge/C++-navy.svg)](https://en.cppreference.com/w/cpp/23)
+[![author](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/WeslleyDeziderio)
+[![](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://en.cppreference.com/w/cpp/23)
 
 <div>
-
-O programa de vocês fará a leitura de um grafo informado através de um arquivo de texto. O formato do arquivo é o seguinte:
+Your program will read a graph informed through a text file. The file format is as follows:
 
 ![Figura 1](assets/file_format.png)
 
@@ -14,175 +13,173 @@ O programa de vocês fará a leitura de um grafo informado através de um arquiv
 ![Figura 1](assets/file.png)
 
 
- 1 - **Leitura e representação do grafo**
+1 - **Graph reading and representation**
 
-Faça um código que leia o grafo de um arquivo e o represente nas duas formas vistas em sala: matriz de adjacências e lista de adjacências. Nas próximas questões, leve em conta que as duas representações do grafo estarão disponı́veis para tornar as implementações mais eficientes. 
-
-</div>
-
-<div>
-
-2 - **Graus mínimo e máximo**
-
-Escreva uma função que calcule os graus mínimo δ(G) e máximo Δ(G) de G. Para o grafo da Figura 1 (instance_1.txt), temos que δ(G)=2 e Δ(G)=5.
+Write code that reads the graph from a file and represents it in the two forms seen in class: adjacency matrix and adjacency list. In the next questions, take into account that both representations of the graph will be available to make implementations more efficient.
 
 </div>
 
 <div>
 
-3 - **Sequência de graus**
+2 - **Minimum and maximum degrees**
 
-Escreva uma função que determine a sequência de graus de G. 
-
-</div>
-
-<div>
-
-4 - **Grau e vizinhanças de um vértice v**
-
-Escreva uma função que determine o grau e as vizinhanças aberta e fechada de um vértice v.
+Write a function that calculates the minimum degrees δ(G) and maximum Δ(G) of G. For the graph in Figure 1 (instance_1.txt), we have that δ(G)=2 and Δ(G)=5.
 
 </div>
 
 <div>
 
-5 - **Adjacência**
+### Tradução do readme.md para o inglês
 
-Escreva uma função que que determine se dois vértices distintos u e v são vizinhos (ou adjacentes). Lembrando que eles são vizinhos se a aresta entre eles existir, ou seja, se (u,v)∈E. Em caso afirmativo, diz-se que u e v são os extremos de tal aresta. 
+3 - **Degree Sequence**
 
-</div>
-
-<div>
-
-6 - **Regularidade**
-
-Um grafo é regular se todos os seus vértices possuem o mesmo grau. Se o grau de todos os vértices for igual a k, diz-se que o grafo é k-regular. Escreva uma função que informe se G é regular, deixando claro o valor do grau em caso afirmativo. Abaixo segue um exemplo de um grafo 5-regular.
-
-![Regularidade](assets/q6.png "Grafo 5-regular")
-
+Write a function that determines the degree sequence of G.
 
 </div>
 
 <div>
 
-7 -**Completude**
+4 - **Degree and Neighborhood of a vertex v**
 
-Escreva uma função que informe se G é completo, ou seja, se ele possui todas as arestas possíveis. Sendo n o número de vértices de G, vimos em sala que um grafo simples pode ter de 0 a n(n−1)/2 arestas. Portanto, o grafo completo com n vértices, denotado por Kn, possui n(n−1)/2 arestas. Abaixo ilustra-se o grafo K7.
-
-![Completude](assets/q7.png)
-
+Write a function that determines the degree and the open and closed neighborhoods of a vertex v.
 
 </div>
 
 <div>
 
-8 - **Vértices Universais**
+5 - **Adjacency**
 
-Escreva uma função que liste todos os vértices universais de G, que são os vértices que estão ligados a todos os outros vértice do grafo. O grau de um vértice universal é, portanto, igual a n−1.
-
-
-</div>
-
-<div>
-
-9 - **Vértices Isolados**
-
-Escreva uma função que liste todos os vértices isolados de G, que são os vértices que não possuem vizinhos. O grau de um vértice isolado é, portanto, igual a 0.
+Write a function that determines whether two distinct vertices u and v are neighbors (or adjacent). Remember that they are neighbors if the edge between them exists, that is, if (u,v)∈E. If so, it is said that u and v are the endpoints of such an edge.
 
 </div>
 
 <div>
 
-10 - **Subgrafos**
+6 - **Regularity**
 
-Escreva uma função que determine se uma lista de vértices e uma lista de arestas informadas pelo usuário representam um subgrafo H de G. Para H ser subgrafo de G, todos os seus vértices e suas arestas devem estar contidos, respectivamente, nos conjuntos de vértices e arestas de G. Além disso, os extremos de todas as arestas listadas pelo usuário devem estar contidos no conjunto de vértices informado, do contrário não se trata de um grafo pois teríamos uma aresta sem os dois extremos.
+A graph is regular if all its vertices have the same degree. If the degree of all vertices is equal to k, the graph is said to be k-regular. Write a function that informs whether G is regular, clearly stating the value of the degree if affirmative. Below is an example of a 5-regular graph.
 
-</div>
-
-<div>
-
-11 - **Passeios**
-
-Uma sequência de k vértices v1,v2,...,vk é um passeio em G se, para todo 1≤i≤k−1, vale que vi e vi+1 são vizinhos. Isso equivale a dizer que vértices adjacentes na sequência devem ser vizinhos. Não há outra restrição a ser considerada na definição de passeio, sendo possível, por exemplo, repetir vértices e arestas. Um exemplo de passeio no grafo da Figura 1 é 1,2,3,4,3,6.
-
-Escreva uma função que determine se uma sequência de vértices constitui um passeio em G.
+![Regularity](assets/q6.png "5-regular Graph")
 
 </div>
 
 <div>
 
-12 - **Caminhos**
+7 - **Completeness**
 
-Um caminho é um passeio que não repete vértices. O passeio 1,2,3,4 é um caminho no grafo da Figura 1.
+Write a function that informs whether G is complete, that is, if it has all possible edges. Considering n as the number of vertices in G, we have seen in class that a simple graph can have from 0 to n(n−1)/2 edges. Therefore, the complete graph with n vertices, denoted by Kn, has n(n−1)/2 edges. Below is an illustration of the graph K7.
 
-Escreva uma função que determine se uma dada sequência de vértices constitui um caminho em G.
+![Completeness](assets/q7.png)
 
 </div>
 
 <div>
 
-13 - **Ciclos**
+8 - **Universal Vertices**
 
-Um ciclo é um passeio que não repete vértices, com exceção do primeiro e último vértices, que são iguais. O passeio 1,2,4,3,1 é um ciclo no grafo da Figura 1.
+Write a function that lists all the universal vertices of G, which are the vertices that are connected to all other vertices in the graph. The degree of a universal vertex is therefore equal to n−1.
 
-Escreva uma função que determine se uma dada sequência de vértices constitui um ciclo em G.
-
-<div>
+</div>
 
 <div>
 
-14 - **Trilhas**
+9 - **Isolated Vertices**
 
-Uma trilha é um passeio que não repete arestas.
+Write a function that lists all the isolated vertices of G, which are the vertices that have no neighbors. The degree of an isolated vertex is therefore equal to 0.
 
-Escreva uma função que determine se uma dada sequência de vértices constitui uma trilha em G.
+</div>
 
 <div>
+
+10 - **Subgraphs**
+
+Write a function that determines whether a list of vertices and a list of edges provided by the user represent a subgraph H of G. For H to be a subgraph of G, all its vertices and edges must be contained, respectively, in the sets of vertices and edges of G. In addition, the endpoints of all edges listed by the user must be contained in the set of vertices provided, otherwise it is not a graph because we would have an edge without both endpoints.
+
+</div>
+
+<div>
+
+11 - **Walks**
+
+A sequence of k vertices v1,v2,...,vk is a walk in G if, for every 1≤i≤k−1, it holds that vi and vi+1 are neighbors. This means that adjacent vertices in the sequence must be neighbors. There are no other restrictions to be considered in the definition of a walk, so it is possible, for example, to repeat vertices and edges. An example of a walk in the graph in Figure 1 is 1,2,3,4,3,6.
+
+Write a function that determines whether a sequence of vertices constitutes a walk in G.
+
+</div>
+
+<div>
+
+12 - **Paths**
+
+A path is a walk that does not repeat vertices. The walk 1,2,3,4 is a path in the graph in Figure 1.
+
+Write a function that determines whether a given sequence of vertices constitutes a path in G.
+
+</div>
+
+<div>
+
+13 - **Cycles**
+
+A cycle is a walk that does not repeat vertices, except for the first and last vertices, which are the same. The walk 1,2,4,3,1 is a cycle in the graph in Figure 1.
+
+Write a function that determines whether a given sequence of vertices constitutes a cycle in G.
+
+</div>
+
+<div>
+
+14 - **Trails**
+
+A trail is a walk that does not repeat edges.
+
+Write a function that determines whether a given sequence of vertices constitutes a trail in G.
+
+</div>
 
 <div>
 
 15 - **Cliques**
 
-Um subconjunto de vértices S⊆V é um clique de G se, para quaisquer dois vértices distintos i,j∈S, existe a aresta (i,j) no grafo. Portanto, os vértices de um clique estão dois a dois conectados por uma aresta. Os seguintes conjuntos são exemplos de clique do grafo da Figura 1: {1,2},{1,2,3},{1,2,3,4}.
+A subset of vertices S⊆V is a clique of G if, for any two distinct vertices i,j∈S, there is an edge (i,j) in the graph. Therefore, the vertices of a clique are pairwise connected by an edge. The following sets are examples of cliques in the graph in Figure 1: {1,2},{1,2,3},{1,2,3,4}.
 
-Escreva uma função que determine se um dado conjunto de vértices constitui um clique de G.
-
-<div>
-
-<div>
-
-16 - **Clique Maximal**
-
-Um clique S⊆V é dito maximal se não houver outro clique S′ tal que S′⊇S. Isto é, se não for possível expandir o conjunto S através da inserção de um ou mais vértices de modo que o conjunto resultante ainda seja um clique. Os seguintes conjuntos são exemplos de cliques maximais do grafo da Figura 1: {1,2,3,4},{5,6,7}. Observe que o conjunto {1,2,3}, apesar de ser clique, não é maximal pois ele poderia ser estendido através da adição do vértice 4.
-
-Escreva uma função que determine se um dado conjunto de vértices constitui um clique maximal de G.
-
-<div>
-
-17 - **Complemento**
-
-O complemento de G é um grafo G¯=(V,E¯) que possui os mesmos vértices de G, mas cujo conjunto de arestas é o complemento do conjunto de arestas de G. Portanto, uma aresta (i,j) pertence a E¯ se, e somente se, ela não pertece a E. O grafo abaixo corresponde ao complemento do grafo ilustrado na Figura 1.
-
-![Complemento](assets/q17.png)
-
-Escreva uma função que receba um grafo como parâmetro e retorne o seu complemento. Observe que o retorno da função consiste em um grafo.
+Write a function that determines whether a given set of vertices constitutes a clique of G.
 
 </div>
 
 <div>
 
-18 - **Conjunto Indenpendente**
+16 - **Maximal Clique**
 
-Um subconjunto de vértices S⊆V é um conjunto independente de G se, para quaisquer dois vértices distintos i,j∈S, não existe a aresta (i,j) no grafo. O conjunto {1,7} é um exemplo de conjunto independente do grafo da Figura 1.
+A clique S⊆V is said to be maximal if there is no other clique S′ such that S′⊇S. That is, if it is not possible to expand the set S by inserting one or more vertices in such a way that the resulting set is still a clique. The following sets are examples of maximal cliques in the graph in Figure 1: {1,2,3,4},{5,6,7}. Note that the set {1,2,3}, although a clique, is not maximal because it could be extended by adding vertex 4.
 
-Usando suas respostas dos itens 15 e 17, escreva uma função que determine se um dado conjunto de vértices constitui um conjunto independente de G.
-
-<div>
-
-<h1>Execução</h1>
-
-<div>
-
-Na raíz do projeto, execute o comando `make`. Para executar uma instância basta passar o comando ./concepts instances/\<instancia_a_ser_executada\>
+Write a function that determines whether a given set of vertices constitutes a maximal clique of G.
 
 </div>
+
+<div>
+
+17 - **Complement**
+
+The complement of G is a graph G¯=(V,E¯) that has the same vertices as G, but whose set of edges is the complement of the set of edges of G. Therefore, an edge (i,j) belongs to E¯ if and only if it does not belong to E. The graph below corresponds to the complement of the graph illustrated in Figure 1.
+
+![Complement](assets/q17.png)
+
+Write a function that takes a graph as a parameter and returns its complement. Note that the return of the function consists of a graph.
+
+</div>
+
+<div>
+
+18 - **Independent Set**
+
+A subset of vertices S⊆V is an independent set of G if, for any two distinct vertices i,j∈S, there is no edge (i,j) in the graph. The set {1,7} is an example of an independent set of the graph in Figure 1.
+
+Using your answers from items 15 and 17, write a function that determines whether a given set of vertices constitutes an independent set of G.
+
+</div>
+
+
+## Running
+
+At the root of the project, run the command `make`. To run an instance, simply execute the command ./concepts instances/\<instance_to_be_executed\>
