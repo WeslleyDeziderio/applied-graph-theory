@@ -1,4 +1,4 @@
-<h1 align="center"> Project 1| Initial Concepts about Graphs</h1>
+<h2 align="center"> Project 1| Initial Concepts about Graphs</h2>
 
 [![author](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/WeslleyDeziderio)
 [![](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://en.cppreference.com/w/cpp/23)
