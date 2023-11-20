@@ -182,4 +182,4 @@ Using your answers from items 15 and 17, write a function that determines whethe
 
 ## Running
 
-At the root of the project, run the command `make`. To run an instance, simply execute the command ./concepts instances/\<instance_to_be_executed\>
+At the root of the project, run the command `make`. To run an instance, simply execute the command `./concepts instances/\<instance_to_be_executed\>`
