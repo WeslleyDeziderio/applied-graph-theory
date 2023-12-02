@@ -28,8 +28,6 @@ public:
     void readData();
     std::string getInstanceName();
     std::vector<std::vector<int>> getAdjacencyComplementMatrix();
-    void addEdge(int, int);
-    void removeEdge(int, int);
     std::list<std::list<int>> getAdjacencyList();
 	void printAdjacencyMatrix();
     void printAdjacencyList();
