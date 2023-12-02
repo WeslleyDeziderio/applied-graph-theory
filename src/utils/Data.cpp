@@ -41,16 +41,6 @@ std::vector<std::vector<int>> Data::getAdjacencyComplementMatrix() {
     return adjacencyComplementMatrix;
 }
 
-void Data::addEdge(int i, int j) {
-    this->adjacencyMatrix[i][j] = 1;
-    this->adjacencyMatrix[j][i] = 1;
-}
-
-void Data::removeEdge(int i, int j) {
-    this->adjacencyMatrix[i][j] = 0;
-    this->adjacencyMatrix[j][i] = 0;
-}
-
 void Data::printAdjacencyMatrix() {  
     std::cout << "Adjacency Matrix: \n";
     for (int i = 0; i < this->numVertices; ++i) {
