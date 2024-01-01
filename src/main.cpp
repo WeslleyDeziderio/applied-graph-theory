@@ -1,40 +1,40 @@
-#include <iostream>
 #include "../include/utils/Data.hpp"
+#include <iostream>
 
-int main(int argc, char** argv) {
-    Data data(argc, argv[1]);
-    std::string instanceName = data.getInstanceName();
-    std::cout << "Reading: " << instanceName << std::endl;
-    
-    data.readData();
-    data.printAdjacencyMatrix();
-    data.printAdjacencyList();
-    data.computeMaxDegree();
-    data.computeMinDegree();
+int main(int argc, char **argv) {
+  Data data(argc, argv[1]);
+  std::string instanceName = data.getInstanceName();
+  std::cout << "Reading: " << instanceName << std::endl;
 
-    std::vector<int> degreeSequence = data.printDegrees();
+  data.readData();
+  data.printAdjacencyMatrix();
+  data.printAdjacencyList();
+  data.computeMaxDegree();
+  data.computeMinDegree();
 
-    std::cout << "Degree sequence: ";
-    for (int degree : degreeSequence) {
-        std::cout << degree << " ";
-    }
-    std::cout << std::endl;
+  std::vector<int> degreeSequence = data.printDegrees();
 
-    data.isNeighbors();
-    data.determineDegreeOpenClosedNeighbor();
-    data.isRegular();
-    data.isComplete();
-    data.isUniversalVertex();
-    data.isIsolatedVertex();
-    data.isSubgraph();
-    data.isWalk();
-    data.isPath();
-    data.isCycle();
-    data.isTrail();
-    data.isClique();
-    data.isCliqueMaximal();
-    data.generateComplement();
-    data.isIndependentSet();
+  std::cout << "Degree sequence: ";
+  for (int degree : degreeSequence) {
+    std::cout << degree << " ";
+  }
+  std::cout << std::endl;
 
-    return 0;
+  data.isNeighbors();
+  data.determineDegreeOpenClosedNeighbor();
+  data.isRegular();
+  data.isComplete();
+  data.isUniversalVertex();
+  data.isIsolatedVertex();
+  data.isSubgraph();
+  data.isWalk();
+  data.isPath();
+  /* data.isCycle(); */
+  data.isTrail();
+  data.isClique();
+  data.isCliqueMaximal();
+  data.generateComplement();
+  data.isIndependentSet();
+
+  return 0;
 }
