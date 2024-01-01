@@ -410,6 +410,7 @@ void Data::isCycle() {
   int cycleSize;
   int vertexToInsert;
   std::vector<int> cycleSequence;
+  std::vector<bool> visitedVertex(this->adjacencyList.size(), false);
 
   std::cout
       << "\nInsert the sequence of vertices to determine if forms a cycle: ";
@@ -422,6 +423,29 @@ void Data::isCycle() {
   }
 
   std::vector<int> aux(cycleSequence);
+
+  if (cycleSequence[0] == cycleSequence[cycleSequence.size() - 1] ||
+      !isAdjacency(cycleSequence[0], cycleSequence[1]) ||
+      !isAdjacency(cycleSequence[cycleSequence.size() - 2],
+                   cycleSequence[cycleSequence.size() - 1])) {
+    std::cout << "The sequence does not form a cycle! \n";
+  }
+
+  aux.pop_back();
+  aux.erase(aux.begin());
+
+  for (int i = 0; i < cycleSequence.size() - 1; ++i) {
+    for (int j = i + 1; j < i + 2; ++j) {
+      if (cycleSequence[i] == cycleSequence[j] ||
+          !isAdjacency(cycleSequence[i], cycleSequence[j]) ||
+          visitedVertex[cycleSequence[j]]) {
+        std::cout << "The sequence does not form a cycle! \n";
+      }
+    }
+    visitedVertex[cycleSequence[i]] = true;
+  }
+
+  std::cout << "The sequence form a cycle! \n";
 }
 
 void Data::isPath() {
