@@ -29,8 +29,6 @@ Write a function that calculates the minimum degrees δ(G) and maximum Δ(G) of 
 
 <div>
 
-### Tradução do readme.md para o inglês
-
 3 - **Degree Sequence**
 
 Write a function that determines the degree sequence of G.
